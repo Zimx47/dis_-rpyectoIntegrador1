@@ -5,6 +5,7 @@ public class Ejecutable {
 		// TODO Auto-generated method stub
 		
 		System.out.println("holii");
+		System.out.println("holii");
 
 	}
 
