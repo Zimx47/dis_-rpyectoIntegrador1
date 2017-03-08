@@ -11,6 +11,7 @@ public class Logica {
 	private PApplet app;
 	private String[] nombres, datos, colores;
 	private ArrayList<Estudiante>estudia;
+	private ArrayList<Estudiante>estudBackup;
 	private HashSet<Estudiante>estuSinRep;
 	
 	
@@ -24,6 +25,7 @@ public class Logica {
 		
 		estudia= new ArrayList<>();
 		estuSinRep= new HashSet<>();
+		estudBackup= new ArrayList<>();
 		
 		for (int i = 0; i < nombres.length; i++) {
 			String [] cadaNombre = nombres[i].split(":");
@@ -59,8 +61,9 @@ public class Logica {
 	public void keyP(){
 		if(app.keyCode=='1'){
 			if(estudia.isEmpty()){
-				estudia.addAll(estuSinRep);
+				estudia.addAll(estudBackup);
 				estuSinRep.removeAll(estudia);
+				estudBackup.removeAll(estudia);
 				
 			}
 			Collections.sort(estudia);
@@ -69,8 +72,9 @@ public class Logica {
 		
 		if(app.keyCode=='2'){
 			if(estudia.isEmpty()){
-				estudia.addAll(estuSinRep);
+				estudia.addAll(estudBackup);
 				estuSinRep.removeAll(estudia);
+				estudBackup.removeAll(estudia);
 				
 			}
 			ComparPeso pe= new ComparPeso();
@@ -81,6 +85,7 @@ public class Logica {
 		if(app.keyCode=='3'){
 			if(estuSinRep.isEmpty()){
 				estuSinRep.addAll(estudia);
+				estudBackup.addAll(estudia);
 				estudia.removeAll(estuSinRep);
 				
 			}
