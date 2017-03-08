@@ -3,6 +3,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.TreeSet;
 
 import processing.core.PApplet;
 
@@ -12,8 +13,8 @@ public class Logica {
 	private String[] nombres, datos, colores;
 	private ArrayList<Estudiante>estudia;
 	private ArrayList<Estudiante>estudBackup;
-	private HashSet<Estudiante>estuSinRep;
-	
+	private HashSet<Estudiante>estuHash;
+	private TreeSet<Estudiante>estuTrees;
 	
 	public Logica(PApplet app) {
 		this.app=app;
@@ -24,7 +25,8 @@ public class Logica {
 		colores= app.loadStrings("data/colores.txt");
 		
 		estudia= new ArrayList<>();
-		estuSinRep= new HashSet<>();
+		estuHash= new HashSet<>();
+		estuTrees= new TreeSet<>(new ComparEdad());
 		estudBackup= new ArrayList<>();
 		
 		for (int i = 0; i < nombres.length; i++) {
@@ -55,6 +57,7 @@ public class Logica {
 			estudia.get(i).pintar(100, 50+30*i);
 			
 		}
+		drawTree();
 		drawHash();
 	}
 	
@@ -62,7 +65,8 @@ public class Logica {
 		if(app.keyCode=='1'){
 			if(estudia.isEmpty()){
 				estudia.addAll(estudBackup);
-				estuSinRep.removeAll(estudia);
+				estuTrees.removeAll(estudia);
+				estuHash.removeAll(estudia);
 				estudBackup.removeAll(estudia);
 				
 			}
@@ -73,7 +77,8 @@ public class Logica {
 		if(app.keyCode=='2'){
 			if(estudia.isEmpty()){
 				estudia.addAll(estudBackup);
-				estuSinRep.removeAll(estudia);
+				estuTrees.removeAll(estudia);
+				estuHash.removeAll(estudia);
 				estudBackup.removeAll(estudia);
 				
 			}
@@ -83,26 +88,44 @@ public class Logica {
 			}
 		
 		if(app.keyCode=='3'){
-			if(estuSinRep.isEmpty()){
-				estuSinRep.addAll(estudia);
-				estudBackup.addAll(estudia);
-				estudia.removeAll(estuSinRep);
+			if(estuTrees.isEmpty()){
 				
+				if(estudBackup.isEmpty()){
+				estudBackup.addAll(estudia);
+				estuTrees.addAll(estudia);
+				estudia.removeAll(estudBackup);
+				
+				}else if(!estudBackup.isEmpty()){
+					estuHash.removeAll(estudBackup);
+					estuTrees.addAll(estudBackup);
+					//estudia.removeAll(estudBackup);
+					
+				}
 			}
-//			
-//			if(app.keyCode=='4'){
-//				if(estudia.isEmpty()){
-//					estudia.addAll(estuSinRep);
-//					estuSinRep.removeAll(estudia);
-//					
-//				}
-//
-//			}
+			
+			if(app.keyCode=='4'){
+				if(estuHash.isEmpty()){
+					app.println("riko");
+					if(estudBackup.isEmpty()){
+					estudBackup.addAll(estudia);
+					estuHash.addAll(estudia);
+					
+					estudia.removeAll(estudBackup);
+					
+					}else if(!estudBackup.isEmpty()){
+						app.println("riko");
+						estuTrees.removeAll(estudBackup);
+						estuHash.addAll(estudBackup);
+						
+					}
+				}
+
+			}
 			}
 		}
 	
-	public void drawHash(){
-		Iterator<Estudiante> ithas = estuSinRep.iterator();
+	public void drawTree(){
+		Iterator<Estudiante> ithas = estuTrees.iterator();
 		int i =0;
 while (ithas.hasNext()){
 			
@@ -110,6 +133,17 @@ while (ithas.hasNext()){
 			
 			estudd.pintar(100, 50+30*i);
 			i++;
+		}
+	}
+	public void drawHash(){
+		Iterator<Estudiante> ithas2 = estuHash.iterator();
+		int i2 =0;
+while (ithas2.hasNext()){
+			
+	Estudiante estudd2 = ithas2.next();
+			
+			estudd2.pintar(100, 50+30*i2);
+			i2++;
 		}
 	}
 	}

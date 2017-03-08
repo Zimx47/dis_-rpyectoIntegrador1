@@ -6,7 +6,7 @@ public class Estudiante implements Comparable<Estudiante> {
 	  private PApplet app;
 
 	  private String[] cadena;
-	  private int r,g,b,peso, edad;
+	  private int r,g,b,peso, edad, sumaColores;
 	  private String nombre1, nombre2, cedula;
 	public Estudiante(PApplet app, int r, int g, int b, String nombre1, String nombre2, String cedula, int edad,
 			int peso) {
@@ -20,6 +20,7 @@ public class Estudiante implements Comparable<Estudiante> {
 		this.cedula = cedula;
 		this.edad = edad;
 		this.peso = peso;
+		sumaColores=r+g+b;
 	} 
 	
 	public void pintar(int x, int y){
@@ -30,6 +31,7 @@ public class Estudiante implements Comparable<Estudiante> {
 		app.text(cedula, x+130, y);
 		app.text(edad, x+220, y);
 		app.text(peso, x+260, y);
+		app.text("Suma de colores: "+ sumaColores, x+300, y);
 	}
 
 	@Override
@@ -109,21 +111,48 @@ public class Estudiante implements Comparable<Estudiante> {
 	public void setPeso(int peso) {
 		this.peso = peso;
 	}
+	
+
 
 	@Override
 	public int hashCode() {
-		return this.edad;
+		
+		return this.sumaColores;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-	
 		if(obj instanceof Estudiante){
 			Estudiante estu = (Estudiante) obj;
-		return this.edad == estu.edad;
+		return this.sumaColores == estu.getSumaColores();
 		}
 		return false;
 	}
+
+	public int getSumaColores() {
+		return sumaColores;
+	}
+
+	public void setSumaColores(int sumaColores) {
+		this.sumaColores = sumaColores;
+	}
+
+//	@Override
+//	public int hashCode() {
+//		return this.edad;
+//	}
+	
+	
+
+//	@Override
+//	public boolean equals(Object obj) {
+//	
+//		if(obj instanceof Estudiante){
+//			Estudiante estu = (Estudiante) obj;
+//		return this.edad == estu.edad;
+//		}
+//		return false;
+//	}
 
 
 	
