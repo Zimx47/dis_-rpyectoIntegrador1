@@ -137,23 +137,6 @@ public class Estudiante implements Comparable<Estudiante> {
 		this.sumaColores = sumaColores;
 	}
 
-//	@Override
-//	public int hashCode() {
-//		return this.edad;
-//	}
-	
-	
-
-//	@Override
-//	public boolean equals(Object obj) {
-//	
-//		if(obj instanceof Estudiante){
-//			Estudiante estu = (Estudiante) obj;
-//		return this.edad == estu.edad;
-//		}
-//		return false;
-//	}
-
 
 	
 	  
