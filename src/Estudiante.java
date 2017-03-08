@@ -2,9 +2,9 @@ import java.util.ArrayList;
 
 import processing.core.PApplet;
 
-public class Estudiante {
+public class Estudiante implements Comparable<Estudiante> {
 	  private PApplet app;
-//	  private ArrayList<Letra> letras;
+
 	  private String[] cadena;
 	  private int r,g,b;
 	  private String nombre1, nombre2, cedula, edad, peso;
@@ -21,6 +21,96 @@ public class Estudiante {
 		this.edad = edad;
 		this.peso = peso;
 	} 
+	
+	public void pintar(int x, int y){
+		
+		app.fill(r,g,b);
+		app.text(nombre1, x, y);
+		app.text(nombre2, x+60, y);
+		app.text(cedula, x+130, y);
+		app.text(edad, x+220, y);
+		app.text(peso, x+260, y);
+	}
+
+	@Override
+	public int compareTo(Estudiante o) {
+		// TODO Auto-generated method stub
+		return this.nombre2.compareTo(o.getNombre2());
+	}
+
+	public String[] getCadena() {
+		return cadena;
+	}
+
+	public void setCadena(String[] cadena) {
+		this.cadena = cadena;
+	}
+
+	public int getR() {
+		return r;
+	}
+
+	public void setR(int r) {
+		this.r = r;
+	}
+
+	public int getG() {
+		return g;
+	}
+
+	public void setG(int g) {
+		this.g = g;
+	}
+
+	public int getB() {
+		return b;
+	}
+
+	public void setB(int b) {
+		this.b = b;
+	}
+
+	public String getNombre1() {
+		return nombre1;
+	}
+
+	public void setNombre1(String nombre1) {
+		this.nombre1 = nombre1;
+	}
+
+	public String getNombre2() {
+		return nombre2;
+	}
+
+	public void setNombre2(String nombre2) {
+		this.nombre2 = nombre2;
+	}
+
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
+
+	public String getEdad() {
+		return edad;
+	}
+
+	public void setEdad(String edad) {
+		this.edad = edad;
+	}
+
+	public String getPeso() {
+		return peso;
+	}
+
+	public void setPeso(String peso) {
+		this.peso = peso;
+	}
+	
+	
 	  
 	  
 

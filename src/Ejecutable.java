@@ -24,9 +24,13 @@ public void settings() {
 	}
 
 public void draw() {
-	
+	background(255);
 	log.pintar();
 
+}
+
+public void keyPressed(){
+	log.keyP();
 }
 
 }
