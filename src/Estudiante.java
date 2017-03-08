@@ -6,10 +6,10 @@ public class Estudiante implements Comparable<Estudiante> {
 	  private PApplet app;
 
 	  private String[] cadena;
-	  private int r,g,b;
-	  private String nombre1, nombre2, cedula, edad, peso;
-	public Estudiante(PApplet app, int r, int g, int b, String nombre1, String nombre2, String cedula, String edad,
-			String peso) {
+	  private int r,g,b,peso, edad;
+	  private String nombre1, nombre2, cedula;
+	public Estudiante(PApplet app, int r, int g, int b, String nombre1, String nombre2, String cedula, int edad,
+			int peso) {
 		
 		this.app = app;
 		this.r = r;
@@ -94,22 +94,38 @@ public class Estudiante implements Comparable<Estudiante> {
 		this.cedula = cedula;
 	}
 
-	public String getEdad() {
+	public int getEdad() {
 		return edad;
 	}
 
-	public void setEdad(String edad) {
+	public void setEdad(int edad) {
 		this.edad = edad;
 	}
 
-	public String getPeso() {
+	public int getPeso() {
 		return peso;
 	}
 
-	public void setPeso(String peso) {
+	public void setPeso(int peso) {
 		this.peso = peso;
 	}
+
+	@Override
+	public int hashCode() {
+		return this.edad;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
 	
+		if(obj instanceof Estudiante){
+			Estudiante estu = (Estudiante) obj;
+		return this.edad == estu.edad;
+		}
+		return false;
+	}
+
+
 	
 	  
 	  
